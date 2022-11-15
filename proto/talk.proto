@@ -1,0 +1,267 @@
+syntax = "proto3";
+
+option go_package = "github.com/zservicer/protorepo/gens/talkpb/talkpb;talkpb";
+option java_multiple_files = true;
+option java_package = "com.patdz.talk";
+option java_outer_classname = "TalkProto";
+
+//
+//
+//
+
+message Empty {
+
+}
+
+message TalkKickOutMessage {
+  int32 code = 1;
+  string message = 2;
+}
+
+//
+//
+//
+message QueryTalksRequest {
+  repeated TalkStatus statuses = 1;
+}
+
+enum TalkStatus {
+  TALK_STATUS_UNSPECIFIED = 0;
+  TALK_STATUS_OPENED = 1;
+  TALK_STATUS_CLOSED = 2;
+}
+
+message TalkInfo {
+  string talk_id = 1;
+  TalkStatus status = 2;
+  string title = 3;
+  uint64 started_at = 4;
+  uint64 finished_at = 5;
+  string customer_name = 6;
+}
+
+message QueryTalksResponse {
+  repeated TalkInfo talks = 1;
+}
+
+message TalkCreateRequest {
+  string title = 1;
+}
+
+message TalkOpenRequest {
+  string talk_id = 1;
+}
+
+message TalkMessageW {
+  uint64 seq_id = 1;
+
+  oneof Message {
+    string text = 20;
+    bytes image = 21;
+  }
+}
+
+message TalkMessage {
+  uint64 at = 1;
+  bool customer_message = 2;
+  string user = 3;
+
+  oneof Message {
+    string text = 20;
+    bytes image = 21;
+  }
+}
+
+message TalkClose {
+}
+
+message TalkRequest {
+  oneof Talk {
+    TalkCreateRequest create = 1;
+    TalkOpenRequest open = 2;
+    TalkMessageW message = 3;
+    TalkClose close = 4;
+  }
+}
+
+message TalkMessages {
+  string talk_id = 1;
+  repeated TalkMessage messages = 2;
+}
+
+message TalkMessageConfirmed {
+  uint64 seq_id = 1;
+  uint64 at = 2;
+}
+
+message TalkNotifyResponse {
+  string msg = 1;
+}
+
+message TalkResponse {
+  oneof Talk {
+    TalkKickOutMessage kick_out = 1;
+    TalkMessages messages = 2;
+    TalkMessage message = 3;
+    TalkMessageConfirmed message_confirmed = 4;
+    TalkClose close = 5;
+    TalkNotifyResponse notify = 6;
+  }
+}
+
+service CustomerTalkService {
+  rpc QueryTalks(QueryTalksRequest) returns (QueryTalksResponse) {}
+
+  rpc Talk(stream TalkRequest) returns (stream TalkResponse) {}
+}
+
+//
+//
+//
+
+message ServiceQueryAttachedTalksRequest {
+}
+
+message ServiceQueryPendingTalksRequest {
+}
+
+message ServiceReloadTalkRequest {
+  string talk_id = 1;
+}
+
+message ServicePostMessage {
+  string talk_id = 1;
+  TalkMessageW message = 2;
+}
+
+message ServiceAttachRequest {
+  string talk_id = 1;
+}
+
+message ServiceDetachRequest {
+  string talk_id = 1;
+}
+
+message ServiceRequest {
+  oneof Request {
+    ServiceQueryAttachedTalksRequest attached_talks = 1;
+    ServiceQueryPendingTalksRequest pending_talks = 2;
+    ServiceReloadTalkRequest reload = 3;
+    ServicePostMessage message = 4;
+    ServiceAttachRequest attach = 5;
+    ServiceDetachRequest detach = 6;
+  }
+}
+
+message ServicePendingTalksResponse {
+  repeated TalkInfo talks = 2;
+}
+
+message ServiceTalkInfoAndMessages {
+  TalkInfo talk_info = 1;
+  repeated TalkMessage messages = 2;
+}
+
+message ServiceAttachedTalksResponse {
+  repeated ServiceTalkInfoAndMessages talks = 2;
+}
+
+message ServiceAttachTalkResponse {
+  TalkInfo talk = 1;
+  uint64 attached_service_id = 2; // 会话附加到的客服ID，如果非0且值等于当前客户ID，代表附加到了本客服
+}
+
+message ServiceDetachTalkResponse {
+  TalkInfo talk = 1;
+  uint64 detached_service_id = 2; // 被剥夺会话的客服ID，如果非0且值等于当前客户ID，代表本客服被剥夺此会话
+}
+
+message ServiceTalkReloadResponse {
+  ServiceTalkInfoAndMessages talk = 1;
+}
+
+message ServiceTalkMessageResponse {
+  string talk_id = 1;
+  TalkMessage message = 2;
+}
+
+message ServiceTalkNotifyResponse {
+  string msg = 1;
+}
+
+message ServiceMessageConfirmed {
+  uint64 seq_id = 1;
+  uint64 at = 2;
+}
+
+message ServiceTalkClose {
+  string talk_id = 1;
+}
+
+message ServiceResponse {
+  oneof Response {
+    TalkKickOutMessage kick_out = 1; // 客服被踢出登录
+    ServicePendingTalksResponse pending_talks = 2; // 刷新未分配会话列表
+    ServiceAttachedTalksResponse talks = 3; // 刷新客服处理的所有会话
+    ServiceAttachTalkResponse attach = 4; // 会话变为被分配状态
+    ServiceDetachTalkResponse detach = 5; // 会话变为未分配状态
+    ServiceTalkReloadResponse reload = 6; // 会话加载回应
+    ServiceTalkMessageResponse message = 7; // 会话中新增消息
+    ServiceTalkNotifyResponse notify = 8; // notify
+    ServiceMessageConfirmed message_confirmed = 9; // 会话中新增消息回应
+    ServiceTalkClose close = 10; // 会话被关闭
+  }
+}
+
+service ServiceTalkService {
+  rpc Service(stream ServiceRequest) returns (stream ServiceResponse) {}
+}
+
+message CheckTokenRequest {
+
+}
+
+message CheckTokenResponse {
+  bool valid = 1;
+  string user_name = 2;
+  string new_token = 3;
+}
+
+message CreateTokenRequest {
+  string user_name = 1;
+}
+
+message CreateTokenResponse {
+  string token = 1;
+  string user_name = 2;
+}
+
+service CustomerUserServicer {
+  rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse) {}
+  rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse) {}
+}
+
+message RegisterRequest {
+  string user_name = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  string token = 1;
+  string user_name = 2;
+}
+
+message LoginRequest {
+  string user_name = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  string user_name = 2;
+}
+
+service ServicerUserServicer {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+}
