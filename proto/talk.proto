@@ -21,6 +21,7 @@ message TalkKickOutMessage {
 //
 //
 //
+
 message QueryTalksRequest {
   repeated TalkStatus statuses = 1;
 }
