@@ -612,6 +612,10 @@ func (m *TalkCreateRequest) validate(all bool) error {
 
 	// no validation rules for Title
 
+	// no validation rules for ActId
+
+	// no validation rules for BizId
+
 	if len(errors) > 0 {
 		return TalkCreateRequestMultiError(errors)
 	}
@@ -715,6 +719,10 @@ func (m *TalkOpenRequest) validate(all bool) error {
 	var errors []error
 
 	// no validation rules for TalkId
+
+	// no validation rules for ActId
+
+	// no validation rules for BizId
 
 	if len(errors) > 0 {
 		return TalkOpenRequestMultiError(errors)

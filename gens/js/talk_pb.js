@@ -1815,7 +1815,9 @@ proto.TalkCreateRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TalkCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    title: jspb.Message.getFieldWithDefault(msg, 1, "")
+    title: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    actId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    bizId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1856,6 +1858,14 @@ proto.TalkCreateRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setTitle(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setActId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBizId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1892,6 +1902,20 @@ proto.TalkCreateRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getActId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getBizId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -1910,6 +1934,42 @@ proto.TalkCreateRequest.prototype.getTitle = function() {
  */
 proto.TalkCreateRequest.prototype.setTitle = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string act_id = 2;
+ * @return {string}
+ */
+proto.TalkCreateRequest.prototype.getActId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.TalkCreateRequest} returns this
+ */
+proto.TalkCreateRequest.prototype.setActId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string biz_id = 3;
+ * @return {string}
+ */
+proto.TalkCreateRequest.prototype.getBizId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.TalkCreateRequest} returns this
+ */
+proto.TalkCreateRequest.prototype.setBizId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1945,7 +2005,9 @@ proto.TalkOpenRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TalkOpenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    talkId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    talkId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    actId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    bizId: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1986,6 +2048,14 @@ proto.TalkOpenRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setTalkId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setActId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBizId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2022,6 +2092,20 @@ proto.TalkOpenRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getActId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getBizId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -2040,6 +2124,42 @@ proto.TalkOpenRequest.prototype.getTalkId = function() {
  */
 proto.TalkOpenRequest.prototype.setTalkId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string act_id = 2;
+ * @return {string}
+ */
+proto.TalkOpenRequest.prototype.getActId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.TalkOpenRequest} returns this
+ */
+proto.TalkOpenRequest.prototype.setActId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string biz_id = 3;
+ * @return {string}
+ */
+proto.TalkOpenRequest.prototype.getBizId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.TalkOpenRequest} returns this
+ */
+proto.TalkOpenRequest.prototype.setBizId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

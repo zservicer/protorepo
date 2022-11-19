@@ -46,10 +46,14 @@ message QueryTalksResponse {
 
 message TalkCreateRequest {
   string title = 1;
+  string act_id = 2;
+  string biz_id = 3;
 }
 
 message TalkOpenRequest {
   string talk_id = 1;
+  string act_id = 2;
+  string biz_id = 3;
 }
 
 message TalkMessageW {
