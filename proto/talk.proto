@@ -262,6 +262,8 @@ message LoginRequest {
 message LoginResponse {
   string token = 1;
   string user_name = 2;
+  repeated string act_ids = 3;
+  repeated string biz_ids = 4;
 }
 
 service ServicerUserServicer {

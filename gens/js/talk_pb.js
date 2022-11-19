@@ -914,7 +914,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.LoginResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.LoginResponse.repeatedFields_, null);
 };
 goog.inherits(proto.LoginResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8683,6 +8683,13 @@ proto.LoginRequest.prototype.setPassword = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.LoginResponse.repeatedFields_ = [3,4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -8715,7 +8722,9 @@ proto.LoginResponse.prototype.toObject = function(opt_includeInstance) {
 proto.LoginResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     token: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    userName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    actIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    bizIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -8760,6 +8769,14 @@ proto.LoginResponse.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setUserName(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addActIds(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addBizIds(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8803,6 +8820,20 @@ proto.LoginResponse.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getActIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+  f = message.getBizIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -8839,6 +8870,80 @@ proto.LoginResponse.prototype.getUserName = function() {
  */
 proto.LoginResponse.prototype.setUserName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated string act_ids = 3;
+ * @return {!Array<string>}
+ */
+proto.LoginResponse.prototype.getActIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.setActIdsList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.addActIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.clearActIdsList = function() {
+  return this.setActIdsList([]);
+};
+
+
+/**
+ * repeated string biz_ids = 4;
+ * @return {!Array<string>}
+ */
+proto.LoginResponse.prototype.getBizIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.setBizIdsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.addBizIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.LoginResponse} returns this
+ */
+proto.LoginResponse.prototype.clearBizIdsList = function() {
+  return this.setBizIdsList([]);
 };
 
 

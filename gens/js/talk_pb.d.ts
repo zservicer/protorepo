@@ -1146,6 +1146,16 @@ export class LoginResponse extends jspb.Message {
   getUserName(): string;
   setUserName(value: string): void;
 
+  clearActIdsList(): void;
+  getActIdsList(): Array<string>;
+  setActIdsList(value: Array<string>): void;
+  addActIds(value: string, index?: number): string;
+
+  clearBizIdsList(): void;
+  getBizIdsList(): Array<string>;
+  setBizIdsList(value: Array<string>): void;
+  addBizIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LoginResponse.AsObject;
   static toObject(includeInstance: boolean, msg: LoginResponse): LoginResponse.AsObject;
@@ -1160,6 +1170,8 @@ export namespace LoginResponse {
   export type AsObject = {
     token: string,
     userName: string,
+    actIdsList: Array<string>,
+    bizIdsList: Array<string>,
   }
 }
 
