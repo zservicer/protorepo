@@ -252,7 +252,8 @@ message RegisterRequest {
 
 message RegisterResponse {
   string token = 1;
-  string user_name = 2;
+  string user_id = 2;
+  string user_name = 3;
 }
 
 message LoginRequest {
@@ -262,7 +263,27 @@ message LoginRequest {
 
 message LoginResponse {
   string token = 1;
-  string user_name = 2;
+  string user_id = 2;
+  string user_name = 3;
+  repeated string act_ids = 4;
+  repeated string biz_ids = 5;
+}
+
+message ProfileRequest {
+  bool renew_token = 1;
+}
+
+message ProfileResponse {
+  string token = 1;
+  string user_id = 2;
+  string user_name = 3;
+  repeated string act_ids = 4;
+  repeated string biz_ids = 5;
+}
+
+message SetPermissionsRequest {
+  string token = 1;
+  string user_id = 2;
   repeated string act_ids = 3;
   repeated string biz_ids = 4;
 }
@@ -270,4 +291,6 @@ message LoginResponse {
 service ServicerUserServicer {
   rpc Register(RegisterRequest) returns (RegisterResponse) {}
   rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Profile(ProfileRequest) returns (ProfileResponse) {}
+  rpc SetPermissions(SetPermissionsRequest) returns (Empty) {}
 }

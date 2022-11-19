@@ -207,6 +207,14 @@
                 </li>
               
                 <li>
+                  <a href="#.ProfileRequest"><span class="badge">M</span>ProfileRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.ProfileResponse"><span class="badge">M</span>ProfileResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.QueryTalksRequest"><span class="badge">M</span>QueryTalksRequest</a>
                 </li>
               
@@ -292,6 +300,10 @@
               
                 <li>
                   <a href="#.ServiceTalkReloadResponse"><span class="badge">M</span>ServiceTalkReloadResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.SetPermissionsRequest"><span class="badge">M</span>SetPermissionsRequest</a>
                 </li>
               
                 <li>
@@ -574,6 +586,89 @@
                 </tr>
               
                 <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>act_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>biz_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ProfileRequest">ProfileRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>renew_token</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ProfileResponse">ProfileResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>user_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -692,6 +787,13 @@
               
                 <tr>
                   <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -1239,6 +1341,51 @@
                   <td>talk</td>
                   <td><a href="#ServiceTalkInfoAndMessages">ServiceTalkInfoAndMessages</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SetPermissionsRequest">SetPermissionsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>act_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>biz_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1799,6 +1946,20 @@
                 <td>Login</td>
                 <td><a href="#LoginRequest">.LoginRequest</a></td>
                 <td><a href="#LoginResponse">.LoginResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Profile</td>
+                <td><a href="#ProfileRequest">.ProfileRequest</a></td>
+                <td><a href="#ProfileResponse">.ProfileResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SetPermissions</td>
+                <td><a href="#SetPermissionsRequest">.SetPermissionsRequest</a></td>
+                <td><a href="#Empty">.Empty</a></td>
                 <td><p></p></td>
               </tr>
             

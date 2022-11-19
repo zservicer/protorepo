@@ -301,6 +301,24 @@ ServicerUserServicer.Login = {
   responseType: proto_talk_pb.LoginResponse
 };
 
+ServicerUserServicer.Profile = {
+  methodName: "Profile",
+  service: ServicerUserServicer,
+  requestStream: false,
+  responseStream: false,
+  requestType: proto_talk_pb.ProfileRequest,
+  responseType: proto_talk_pb.ProfileResponse
+};
+
+ServicerUserServicer.SetPermissions = {
+  methodName: "SetPermissions",
+  service: ServicerUserServicer,
+  requestStream: false,
+  responseStream: false,
+  requestType: proto_talk_pb.SetPermissionsRequest,
+  responseType: proto_talk_pb.Empty
+};
+
 exports.ServicerUserServicer = ServicerUserServicer;
 
 function ServicerUserServicerClient(serviceHost, options) {
@@ -344,6 +362,68 @@ ServicerUserServicerClient.prototype.login = function login(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(ServicerUserServicer.Login, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ServicerUserServicerClient.prototype.profile = function profile(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ServicerUserServicer.Profile, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ServicerUserServicerClient.prototype.setPermissions = function setPermissions(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ServicerUserServicer.SetPermissions, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

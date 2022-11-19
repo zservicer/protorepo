@@ -1095,6 +1095,9 @@ export class RegisterResponse extends jspb.Message {
   getToken(): string;
   setToken(value: string): void;
 
+  getUserId(): string;
+  setUserId(value: string): void;
+
   getUserName(): string;
   setUserName(value: string): void;
 
@@ -1111,6 +1114,7 @@ export class RegisterResponse extends jspb.Message {
 export namespace RegisterResponse {
   export type AsObject = {
     token: string,
+    userId: string,
     userName: string,
   }
 }
@@ -1143,6 +1147,9 @@ export class LoginResponse extends jspb.Message {
   getToken(): string;
   setToken(value: string): void;
 
+  getUserId(): string;
+  setUserId(value: string): void;
+
   getUserName(): string;
   setUserName(value: string): void;
 
@@ -1169,7 +1176,104 @@ export class LoginResponse extends jspb.Message {
 export namespace LoginResponse {
   export type AsObject = {
     token: string,
+    userId: string,
     userName: string,
+    actIdsList: Array<string>,
+    bizIdsList: Array<string>,
+  }
+}
+
+export class ProfileRequest extends jspb.Message {
+  getRenewToken(): boolean;
+  setRenewToken(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProfileRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ProfileRequest): ProfileRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ProfileRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProfileRequest;
+  static deserializeBinaryFromReader(message: ProfileRequest, reader: jspb.BinaryReader): ProfileRequest;
+}
+
+export namespace ProfileRequest {
+  export type AsObject = {
+    renewToken: boolean,
+  }
+}
+
+export class ProfileResponse extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getUserName(): string;
+  setUserName(value: string): void;
+
+  clearActIdsList(): void;
+  getActIdsList(): Array<string>;
+  setActIdsList(value: Array<string>): void;
+  addActIds(value: string, index?: number): string;
+
+  clearBizIdsList(): void;
+  getBizIdsList(): Array<string>;
+  setBizIdsList(value: Array<string>): void;
+  addBizIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProfileResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ProfileResponse): ProfileResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ProfileResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProfileResponse;
+  static deserializeBinaryFromReader(message: ProfileResponse, reader: jspb.BinaryReader): ProfileResponse;
+}
+
+export namespace ProfileResponse {
+  export type AsObject = {
+    token: string,
+    userId: string,
+    userName: string,
+    actIdsList: Array<string>,
+    bizIdsList: Array<string>,
+  }
+}
+
+export class SetPermissionsRequest extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  clearActIdsList(): void;
+  getActIdsList(): Array<string>;
+  setActIdsList(value: Array<string>): void;
+  addActIds(value: string, index?: number): string;
+
+  clearBizIdsList(): void;
+  getBizIdsList(): Array<string>;
+  setBizIdsList(value: Array<string>): void;
+  addBizIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetPermissionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetPermissionsRequest): SetPermissionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetPermissionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetPermissionsRequest;
+  static deserializeBinaryFromReader(message: SetPermissionsRequest, reader: jspb.BinaryReader): SetPermissionsRequest;
+}
+
+export namespace SetPermissionsRequest {
+  export type AsObject = {
+    token: string,
+    userId: string,
     actIdsList: Array<string>,
     bizIdsList: Array<string>,
   }

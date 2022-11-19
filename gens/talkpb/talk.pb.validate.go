@@ -5174,6 +5174,8 @@ func (m *RegisterResponse) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for UserId
+
 	// no validation rules for UserName
 
 	if len(errors) > 0 {
@@ -5381,6 +5383,8 @@ func (m *LoginResponse) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for UserId
+
 	// no validation rules for UserName
 
 	if len(errors) > 0 {
@@ -5460,3 +5464,317 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = LoginResponseValidationError{}
+
+// Validate checks the field values on ProfileRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *ProfileRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ProfileRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in ProfileRequestMultiError,
+// or nil if none found.
+func (m *ProfileRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ProfileRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for RenewToken
+
+	if len(errors) > 0 {
+		return ProfileRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ProfileRequestMultiError is an error wrapping multiple validation errors
+// returned by ProfileRequest.ValidateAll() if the designated constraints
+// aren't met.
+type ProfileRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ProfileRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ProfileRequestMultiError) AllErrors() []error { return m }
+
+// ProfileRequestValidationError is the validation error returned by
+// ProfileRequest.Validate if the designated constraints aren't met.
+type ProfileRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ProfileRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ProfileRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ProfileRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ProfileRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ProfileRequestValidationError) ErrorName() string { return "ProfileRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ProfileRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sProfileRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ProfileRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ProfileRequestValidationError{}
+
+// Validate checks the field values on ProfileResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ProfileResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ProfileResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ProfileResponseMultiError, or nil if none found.
+func (m *ProfileResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ProfileResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Token
+
+	// no validation rules for UserId
+
+	// no validation rules for UserName
+
+	if len(errors) > 0 {
+		return ProfileResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ProfileResponseMultiError is an error wrapping multiple validation errors
+// returned by ProfileResponse.ValidateAll() if the designated constraints
+// aren't met.
+type ProfileResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ProfileResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ProfileResponseMultiError) AllErrors() []error { return m }
+
+// ProfileResponseValidationError is the validation error returned by
+// ProfileResponse.Validate if the designated constraints aren't met.
+type ProfileResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ProfileResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ProfileResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ProfileResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ProfileResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ProfileResponseValidationError) ErrorName() string { return "ProfileResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ProfileResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sProfileResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ProfileResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ProfileResponseValidationError{}
+
+// Validate checks the field values on SetPermissionsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *SetPermissionsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SetPermissionsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// SetPermissionsRequestMultiError, or nil if none found.
+func (m *SetPermissionsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SetPermissionsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Token
+
+	// no validation rules for UserId
+
+	if len(errors) > 0 {
+		return SetPermissionsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// SetPermissionsRequestMultiError is an error wrapping multiple validation
+// errors returned by SetPermissionsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type SetPermissionsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SetPermissionsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SetPermissionsRequestMultiError) AllErrors() []error { return m }
+
+// SetPermissionsRequestValidationError is the validation error returned by
+// SetPermissionsRequest.Validate if the designated constraints aren't met.
+type SetPermissionsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SetPermissionsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SetPermissionsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SetPermissionsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SetPermissionsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SetPermissionsRequestValidationError) ErrorName() string {
+	return "SetPermissionsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SetPermissionsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSetPermissionsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SetPermissionsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SetPermissionsRequestValidationError{}

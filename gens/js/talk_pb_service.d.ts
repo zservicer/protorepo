@@ -84,10 +84,30 @@ type ServicerUserServicerLogin = {
   readonly responseType: typeof proto_talk_pb.LoginResponse;
 };
 
+type ServicerUserServicerProfile = {
+  readonly methodName: string;
+  readonly service: typeof ServicerUserServicer;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof proto_talk_pb.ProfileRequest;
+  readonly responseType: typeof proto_talk_pb.ProfileResponse;
+};
+
+type ServicerUserServicerSetPermissions = {
+  readonly methodName: string;
+  readonly service: typeof ServicerUserServicer;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof proto_talk_pb.SetPermissionsRequest;
+  readonly responseType: typeof proto_talk_pb.Empty;
+};
+
 export class ServicerUserServicer {
   static readonly serviceName: string;
   static readonly Register: ServicerUserServicerRegister;
   static readonly Login: ServicerUserServicerLogin;
+  static readonly Profile: ServicerUserServicerProfile;
+  static readonly SetPermissions: ServicerUserServicerSetPermissions;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -186,6 +206,24 @@ export class ServicerUserServicerClient {
   login(
     requestMessage: proto_talk_pb.LoginRequest,
     callback: (error: ServiceError|null, responseMessage: proto_talk_pb.LoginResponse|null) => void
+  ): UnaryResponse;
+  profile(
+    requestMessage: proto_talk_pb.ProfileRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: proto_talk_pb.ProfileResponse|null) => void
+  ): UnaryResponse;
+  profile(
+    requestMessage: proto_talk_pb.ProfileRequest,
+    callback: (error: ServiceError|null, responseMessage: proto_talk_pb.ProfileResponse|null) => void
+  ): UnaryResponse;
+  setPermissions(
+    requestMessage: proto_talk_pb.SetPermissionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: proto_talk_pb.Empty|null) => void
+  ): UnaryResponse;
+  setPermissions(
+    requestMessage: proto_talk_pb.SetPermissionsRequest,
+    callback: (error: ServiceError|null, responseMessage: proto_talk_pb.Empty|null) => void
   ): UnaryResponse;
 }
 

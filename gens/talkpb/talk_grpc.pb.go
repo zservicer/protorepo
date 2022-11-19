@@ -419,6 +419,8 @@ var CustomerUserServicer_ServiceDesc = grpc.ServiceDesc{
 type ServicerUserServicerClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
+	SetPermissions(ctx context.Context, in *SetPermissionsRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type servicerUserServicerClient struct {
@@ -447,12 +449,32 @@ func (c *servicerUserServicerClient) Login(ctx context.Context, in *LoginRequest
 	return out, nil
 }
 
+func (c *servicerUserServicerClient) Profile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
+	out := new(ProfileResponse)
+	err := c.cc.Invoke(ctx, "/ServicerUserServicer/Profile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *servicerUserServicerClient) SetPermissions(ctx context.Context, in *SetPermissionsRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/ServicerUserServicer/SetPermissions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServicerUserServicerServer is the server API for ServicerUserServicer service.
 // All implementations must embed UnimplementedServicerUserServicerServer
 // for forward compatibility
 type ServicerUserServicerServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	Profile(context.Context, *ProfileRequest) (*ProfileResponse, error)
+	SetPermissions(context.Context, *SetPermissionsRequest) (*Empty, error)
 	mustEmbedUnimplementedServicerUserServicerServer()
 }
 
@@ -465,6 +487,12 @@ func (UnimplementedServicerUserServicerServer) Register(context.Context, *Regist
 }
 func (UnimplementedServicerUserServicerServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedServicerUserServicerServer) Profile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Profile not implemented")
+}
+func (UnimplementedServicerUserServicerServer) SetPermissions(context.Context, *SetPermissionsRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPermissions not implemented")
 }
 func (UnimplementedServicerUserServicerServer) mustEmbedUnimplementedServicerUserServicerServer() {}
 
@@ -515,6 +543,42 @@ func _ServicerUserServicer_Login_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServicerUserServicer_Profile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServicerUserServicerServer).Profile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ServicerUserServicer/Profile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServicerUserServicerServer).Profile(ctx, req.(*ProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServicerUserServicer_SetPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServicerUserServicerServer).SetPermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ServicerUserServicer/SetPermissions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServicerUserServicerServer).SetPermissions(ctx, req.(*SetPermissionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServicerUserServicer_ServiceDesc is the grpc.ServiceDesc for ServicerUserServicer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -529,6 +593,14 @@ var ServicerUserServicer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _ServicerUserServicer_Login_Handler,
+		},
+		{
+			MethodName: "Profile",
+			Handler:    _ServicerUserServicer_Profile_Handler,
+		},
+		{
+			MethodName: "SetPermissions",
+			Handler:    _ServicerUserServicer_SetPermissions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
