@@ -131,12 +131,6 @@ export class TalkCreateRequest extends jspb.Message {
   getTitle(): string;
   setTitle(value: string): void;
 
-  getActId(): string;
-  setActId(value: string): void;
-
-  getBizId(): string;
-  setBizId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TalkCreateRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TalkCreateRequest): TalkCreateRequest.AsObject;
@@ -150,20 +144,12 @@ export class TalkCreateRequest extends jspb.Message {
 export namespace TalkCreateRequest {
   export type AsObject = {
     title: string,
-    actId: string,
-    bizId: string,
   }
 }
 
 export class TalkOpenRequest extends jspb.Message {
   getTalkId(): string;
   setTalkId(value: string): void;
-
-  getActId(): string;
-  setActId(value: string): void;
-
-  getBizId(): string;
-  setBizId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TalkOpenRequest.AsObject;
@@ -178,8 +164,6 @@ export class TalkOpenRequest extends jspb.Message {
 export namespace TalkOpenRequest {
   export type AsObject = {
     talkId: string,
-    actId: string,
-    bizId: string,
   }
 }
 
@@ -980,6 +964,12 @@ export namespace ServiceResponse {
 }
 
 export class CheckTokenRequest extends jspb.Message {
+  getActId(): string;
+  setActId(value: string): void;
+
+  getBizId(): string;
+  setBizId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CheckTokenRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CheckTokenRequest): CheckTokenRequest.AsObject;
@@ -992,6 +982,8 @@ export class CheckTokenRequest extends jspb.Message {
 
 export namespace CheckTokenRequest {
   export type AsObject = {
+    actId: string,
+    bizId: string,
   }
 }
 
@@ -1027,6 +1019,12 @@ export class CreateTokenRequest extends jspb.Message {
   getUserName(): string;
   setUserName(value: string): void;
 
+  getActId(): string;
+  setActId(value: string): void;
+
+  getBizId(): string;
+  setBizId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateTokenRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateTokenRequest): CreateTokenRequest.AsObject;
@@ -1040,6 +1038,8 @@ export class CreateTokenRequest extends jspb.Message {
 export namespace CreateTokenRequest {
   export type AsObject = {
     userName: string,
+    actId: string,
+    bizId: string,
   }
 }
 

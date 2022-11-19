@@ -46,14 +46,10 @@ message QueryTalksResponse {
 
 message TalkCreateRequest {
   string title = 1;
-  string act_id = 2;
-  string biz_id = 3;
 }
 
 message TalkOpenRequest {
   string talk_id = 1;
-  string act_id = 2;
-  string biz_id = 3;
 }
 
 message TalkMessageW {
@@ -222,7 +218,8 @@ service ServiceTalkService {
 }
 
 message CheckTokenRequest {
-
+  string act_id = 1;
+  string biz_id = 2;
 }
 
 message CheckTokenResponse {
@@ -233,6 +230,8 @@ message CheckTokenResponse {
 
 message CreateTokenRequest {
   string user_name = 1;
+  string act_id = 2;
+  string biz_id = 3;
 }
 
 message CreateTokenResponse {
